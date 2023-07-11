@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    {% load static %}
+    <!-- Mi estilo css -->
+    <link rel="stylesheet" href="{% static 'app/css/estilo.css'%}" />
+    <title>Soporte</title>
+  </head>
+  <body>
+    <!-- menu -->
+    <nav class="menu-container">
+      <!-- burger menu -->
+      <input type="checkbox" aria-label="Toggle menu" />
+      <span></span>
+      <span></span>
+      <span></span>
+
+      <!-- logo -->
+      <a href="{% url 'index'%}" class="menu-logo">
+        <img src="{% static 'app/images/sh.png'%}" alt="SoulHunter" />
+      </a>
+
+      <!-- menu items -->
+      <div class="menu">
+        <ul>
+          <li>
+            <a href="{% url 'api'%}"> Mi Spotify </a>
+          </li>
+          <li>
+            <a href="{% url 'souls'%}"> Souls </a>
+          </li>
+          <li>
+            <a href="{% url 'objetos'%}"> Objetos </a>
+          </li>
+          <li>
+            <a href="{% url 'carrito'%}"> Carrito </a>
+          </li>
+          <li>
+            <a href="{% url 'soporte'%}"> Soporte </a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="{% url 'cuenta'%}" target="_blank" rel="noopener noreferrer">
+              Unirse
+            </a>
+          </li>
+          {% if user.is_authenticated%}
+          <li>
+            <a href="#"> usuario:{{user.username}} </a>
+          </li>
+          <li>
+            <a href="{% url 'logout'%}">Cerrar sesion</a>
+          </li>
+          {% else %}
+          <li>
+            <a href="{% url 'login'%}">iniciar sesion</a>
+          </li>
+          <li>
+            <a href="{% url 'registrar_usuario'%}">Registrar</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <h2>Contactanos</h2>
+    <form action="" class="formulario_contacto" method="post">
+
+      {% csrf_token %}
+
+      {{form}}
+
+
+      <button type="submit" id="btnenviar" class="button">enviar</button>
+    </form>
+    {{mensaje}}
+    
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+      integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
